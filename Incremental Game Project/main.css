@@ -8,7 +8,6 @@ button{
 }
 .stats{
     font-size:200%;
-    text-align:center;
     color:white;
 }
 .upgrades{
@@ -16,4 +15,7 @@ button{
 }
 .coin-gen{
     display:block;
+    color:brown;
+    font-size:150%;
+    
 }
