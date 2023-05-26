@@ -11,3 +11,9 @@ button{
     text-align:center;
     color:white;
 }
+.upgrades{
+    display:none;
+}
+.coin-gen{
+    display:block;
+}
