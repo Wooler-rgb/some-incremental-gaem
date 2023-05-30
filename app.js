@@ -10,10 +10,18 @@ $(document).ready(function(){
     var coinBuffPrice = [1000, 10000];
     var coinGenAmount = [1, 0, 0, 0, 0];
     var coinBuffAmount = [0, 0];
+<<<<<<< Updated upstream
+=======
+    var coinUpgPrice = [1e7, 1e8, 1e9, 1e10, 1e11];
+    var coinUpg = [0, 0, 0, 0, 0];
+    var coinUpgMult = [1, 1, 1, 15, 1];
+>>>>>>> Stashed changes
     var tickspeed = 50;
     var tickdiv = 20;
     var menu = "coin-gen";
     setInterval(function(){
+        GetCoinGenEff();
+        coinProduction = getProduction();
         coins += coinProduction / tickdiv;
         changeStats();
     }, tickspeed); 
@@ -76,6 +84,51 @@ $(document).ready(function(){
     $("#gens").click(function(){
         menu = switchMenu("coin-gen");
     })
+<<<<<<< Updated upstream
+=======
+    $("#cheat-1").click(function(){
+        coins += 1e6;
+    })
+    $("#cheat-2").click(function(){
+        coins += 1e9;
+    })
+    $("#coin-upg-1").click(function(){
+        $("#coin-upg-1").css("background-color", "purple");
+        coins -= coinUpgPrice[0];
+        coinUpg[0] = 1;
+        coinProduction = getProduction();
+        changeStats();
+    })
+    $("#coin-upg-2").click(function(){
+        $("#coin-upg-2").css("background-color", "purple");
+        coins -= coinUpgPrice[1];
+        coinUpg[1] = 1;
+        coinProduction = getProduction();
+        changeStats();
+    })
+    $("#coin-upg-3").click(function(){
+        $("#coin-upg-3").css("background-color", "purple");
+        coins -= coinUpgPrice[2];
+        coinUpg[2] = 1;
+        coinProduction = getProduction();
+        changeStats();
+    })
+    $("#coin-upg-4").click(function(){
+        $("#coin-upg-4").css("background-color", "purple");
+        coins -= coinUpgPrice[3];
+        coinUpg[3] = 1;
+        global_multi *= 2;
+        coinProduction = getProduction();
+        changeStats();
+    })
+    $("#coin-upg-5").click(function(){
+        $("#coin-upg-5").css("background-color", "purple");
+        coins -= coinUpgPrice[4];
+        coinUpg[4] = 1;
+        coinProduction = getProduction();
+        changeStats();
+    })
+>>>>>>> Stashed changes
     function getProduction(){
         return (coinGenAmount[0] * coinGenEff[0] + (coinGenAmount[1] * coinGenEff[1]) + (coinGenAmount[2] * coinGenEff[2]) + (coinGenAmount[3] * coinGenEff[3]) + (coinGenAmount[4] * coinGenEff[4])) * global_multi;
     }
@@ -89,6 +142,7 @@ $(document).ready(function(){
         $("#coin-gen-5-num").html("Overseers: " + coinGenAmount[4] + " ");
         $("#coffee-num").html("Coffee Machines: " + coinBuffAmount[0] + " ");
         $("#pickaxes-num").html("Pickaxes: " + coinBuffAmount[1] + " ");
+<<<<<<< Updated upstream
         $("#coin-gen-1-cost").html("Cost: " + ~~coinGenPrice[0] + " coins");
         $("#coin-gen-2-cost").html("Cost: " + ~~coinGenPrice[1] + " coins");
         $("#coin-gen-3-cost").html("Cost: " + ~~coinGenPrice[2] + " coins");
@@ -103,6 +157,27 @@ $(document).ready(function(){
         $("#coin-gen-5-prod").html(" " + ~~(coinGenAmount[4] * coinGenEff[4] * global_multi) + " c/s");
         $("#coffee-eff").html(" " + ~~(coffee_mult * 100) + "% Production, +10% per coffee machine");
         $("#pickaxes-eff").html(" " + ~~pick_mult + "x Production, Pickaxe Power: 2x");
+=======
+        $("#coin-gen-1-cost").html("Cost: " + round(coinGenPrice[0]) + " coins");
+        $("#coin-gen-2-cost").html("Cost: " + round(coinGenPrice[1]) + " coins");
+        $("#coin-gen-3-cost").html("Cost: " + round(coinGenPrice[2]) + " coins");
+        $("#coin-gen-4-cost").html("Cost: " + round(coinGenPrice[3]) + " coins");
+        $("#coin-gen-5-cost").html("Cost: " + round(coinGenPrice[4]) + " coins");
+        $("#coffee-cost").html("Cost: " + round(coinBuffPrice[0]) + " coins");
+        $("#pickaxes-cost").html("Cost: " + round(coinBuffPrice[1]) + " coins");
+        $("#coin-gen-1-prod").html(" " + round(coinGenAmount[0] * coinGenEff[0] * global_multi) + " c/s (" + round(coinGenEff[0] * global_multi) + " c/s per slave)");
+        $("#coin-gen-2-prod").html(" " + round(coinGenAmount[1] * coinGenEff[1] * global_multi) + " c/s (" + round(coinGenEff[1] * global_multi) + " c/s per staff)");
+        $("#coin-gen-3-prod").html(" " + round(coinGenAmount[2] * coinGenEff[2] * global_multi) + " c/s (" + round(coinGenEff[2] * global_multi) + " c/s per watcher)");
+        $("#coin-gen-4-prod").html(" " + round(coinGenAmount[3] * coinGenEff[3] * global_multi) + " c/s (" + round(coinGenEff[3] * global_multi) + " c/s per manager)");
+        $("#coin-gen-5-prod").html(" " + round(coinGenAmount[4] * coinGenEff[4] * global_multi) + " c/s (" + round(coinGenEff[4] * global_multi) + " c/s per overseer)");
+        $("#coffee-eff").html(" " + round(coffee_mult * 100) + "% Production, +10% per coffee machine");
+        $("#pickaxes-eff").html(" " + pick_mult + "x Production, Pickaxe Power: 2x");
+        $("#coin-upg-1-desc").html(" Cost: 1e+7. Slaves produce more coins based on coins. Currently: " + round(coinUpgMult[0]) + "x");
+        $("#coin-upg-2-desc").html(" Cost: 1e+8. Staff produces more coins based on Staff. Currently: " + round(coinUpgMult[1]) + "x");
+        $("#coin-upg-3-desc").html(" Cost: 1e+9. Watchers produce more coins based on every producer. Currently: " + round(coinUpgMult[2]) + "x");
+        $("#coin-upg-4-desc").html(" Cost: 1e+10. Managers produce 200x coins. 2x coins/s as well! Currently: " + round(coinUpgMult[3]) + "x");
+        $("#coin-upg-5-desc").html(" Cost: 1e+11. Overseers boost coin gain. Currently: " + round(coinUpgMult[4]) + "x");
+>>>>>>> Stashed changes
         if(coins < coinGenPrice[0])
             disableBtn("coin-gen-1");
         else
@@ -131,6 +206,30 @@ $(document).ready(function(){
             disableBtn("pickaxes");
         else
             enableBtn("pickaxes");
+        if(coins < coinUpgPrice[0] || coinUpg[0] == 1)
+            disableBtn("coin-upg-1");
+        else
+            enableBtn("coin-upg-1");
+        if(coins < coinUpgPrice[1] || coinUpg[1] == 1)
+            disableBtn("coin-upg-2");
+        else
+            enableBtn("coin-upg-2");
+        if(coins < coinUpgPrice[2] || coinUpg[2] == 1)
+            disableBtn("coin-upg-3");
+        else
+            enableBtn("coin-upg-3");
+        if(coins < coinUpgPrice[3] || coinUpg[3] == 1)
+            disableBtn("coin-upg-4");
+        else
+            enableBtn("coin-upg-4");
+        if(coins < coinUpgPrice[4] || coinUpg[4] == 1)
+            disableBtn("coin-upg-5");
+        else
+            enableBtn("coin-upg-5");
+        if(coins >= 1e12){
+            alert("YOU WON!");
+            Prestige();
+        }
     }
     function switchMenu(fmenu){
         
@@ -144,4 +243,49 @@ $(document).ready(function(){
     function enableBtn(btn) {
         document.getElementById(btn).disabled = false;
     }
+<<<<<<< Updated upstream
+=======
+    function round(num){
+        if(num <= 1e6){
+            return Math.round(num);
+        }
+        else{
+            return num.toExponential(2);
+        }
+    }
+    function logx(x, num){
+        return Math.log(num) / Math.log(x);
+    }
+    function GetCoinGenEff(){
+        coinUpgMult[0] = 1 + (logx(1.4, coins + 1) * coinUpg[0]);
+        coinUpgMult[1] = 1 + (coinGenAmount[1] / 2.5 * coinUpg[1]);
+        coinUpgMult[2] = 1 + ((coinGenAmount[0] + coinGenAmount[1] +  + coinGenAmount[2] + coinGenAmount[3] + coinGenAmount[4] + 1) / 3 * coinUpg[2]);
+        coinUpgMult[3] = 1 + 199 * coinUpg[3];
+        coinUpgMult[4] = 1 + coinGenAmount[4] / 4 * coinUpg[4];
+        coinGenEff[0] = coinUpgMult[0];
+        coinGenEff[1] = coinUpgMult[1] * 10;
+        coinGenEff[2] = coinUpgMult[2] * 100;
+        coinGenEff[3] = coinUpgMult[3] * 500;
+        global_multi = coffee_mult * pick_mult * coinUpgMult[4] * (1 + 1 * coinUpg[3]);
+    }
+    function Prestige(){
+        coins = 0;
+        coinProduction = 1;
+        coffee_mult = 1;
+        pick_mult = 1;
+        global_multi = 1;
+        coinGenPrice = [10, 100, 1500, 12500, 100000];
+        coinGenEff = [1, 10, 100, 500, 3000];
+        coinBuffPrice = [1000, 10000];
+        coinGenAmount = [1, 0, 0, 0, 0];
+        coinBuffAmount = [0, 0];
+        coinUpgPrice = [1e7, 1e8, 1e9, 1e10, 1e11];
+        coinUpg = [0, 0, 0, 0, 0];
+        $("#coin-upg-1").css("background-color", "black");
+        $("#coin-upg-2").css("background-color", "black");
+        $("#coin-upg-3").css("background-color", "black");
+        $("#coin-upg-4").css("background-color", "black");
+        $("#coin-upg-5").css("background-color", "black");
+    }
+>>>>>>> Stashed changes
 });
