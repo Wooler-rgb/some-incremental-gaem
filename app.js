@@ -10,6 +10,7 @@ $(document).ready(function(){
     var coinBuffPrice = [1000, 10000];
     var coinGenAmount = [1, 0, 0, 0, 0];
     var coinBuffAmount = [0, 0];
+    var coinUpgrades = [0, 0, 0, 0, 0];
     var tickspeed = 50;
     var tickdiv = 20;
     var menu = "coin-gen";
@@ -76,12 +77,18 @@ $(document).ready(function(){
     $("#gens").click(function(){
         menu = switchMenu("coin-gen");
     })
+    $("#cheat-1").click(function(){
+        coins += 1e6;
+    })
+    $("#cheat-2").click(function(){
+        coins += 1e9;
+    })
     function getProduction(){
         return (coinGenAmount[0] * coinGenEff[0] + (coinGenAmount[1] * coinGenEff[1]) + (coinGenAmount[2] * coinGenEff[2]) + (coinGenAmount[3] * coinGenEff[3]) + (coinGenAmount[4] * coinGenEff[4])) * global_multi;
     }
     function changeStats(){
-        $("#coins").html(~~coins + "&nbsp&nbsp&nbsp&nbsp");
-        $("#c-per-s").html(~~coinProduction + " c/s");
+        $("#coins").html(round(coins) + "&nbsp&nbsp&nbsp&nbsp");
+        $("#c-per-s").html(round(coinProduction) + " c/s");
         $("#coin-gen-1-num").html("Slaves: " + coinGenAmount[0] + " ");
         $("#coin-gen-2-num").html("Staff: " + coinGenAmount[1] + " ");
         $("#coin-gen-3-num").html("Watchers: " + coinGenAmount[2] + " ");
@@ -89,20 +96,20 @@ $(document).ready(function(){
         $("#coin-gen-5-num").html("Overseers: " + coinGenAmount[4] + " ");
         $("#coffee-num").html("Coffee Machines: " + coinBuffAmount[0] + " ");
         $("#pickaxes-num").html("Pickaxes: " + coinBuffAmount[1] + " ");
-        $("#coin-gen-1-cost").html("Cost: " + ~~coinGenPrice[0] + " coins");
-        $("#coin-gen-2-cost").html("Cost: " + ~~coinGenPrice[1] + " coins");
-        $("#coin-gen-3-cost").html("Cost: " + ~~coinGenPrice[2] + " coins");
-        $("#coin-gen-4-cost").html("Cost: " + ~~coinGenPrice[3] + " coins");
-        $("#coin-gen-5-cost").html("Cost: " + ~~coinGenPrice[4] + " coins");
-        $("#coffee-cost").html("Cost: " + ~~coinBuffPrice[0] + " coins");
-        $("#pickaxes-cost").html("Cost: " + ~~coinBuffPrice[1] + " coins");
-        $("#coin-gen-1-prod").html(" " + ~~(coinGenAmount[0] * coinGenEff[0] * global_multi) + " c/s");
-        $("#coin-gen-2-prod").html(" " + ~~(coinGenAmount[1] * coinGenEff[1] * global_multi) + " c/s");
-        $("#coin-gen-3-prod").html(" " + ~~(coinGenAmount[2] * coinGenEff[2] * global_multi) + " c/s");
-        $("#coin-gen-4-prod").html(" " + ~~(coinGenAmount[3] * coinGenEff[3] * global_multi) + " c/s");
-        $("#coin-gen-5-prod").html(" " + ~~(coinGenAmount[4] * coinGenEff[4] * global_multi) + " c/s");
-        $("#coffee-eff").html(" " + ~~(coffee_mult * 100) + "% Production, +10% per coffee machine");
-        $("#pickaxes-eff").html(" " + ~~pick_mult + "x Production, Pickaxe Power: 2x");
+        $("#coin-gen-1-cost").html("Cost: " + round(coinGenPrice[0]) + " coins");
+        $("#coin-gen-2-cost").html("Cost: " + round(coinGenPrice[1]) + " coins");
+        $("#coin-gen-3-cost").html("Cost: " + round(coinGenPrice[2]) + " coins");
+        $("#coin-gen-4-cost").html("Cost: " + round(coinGenPrice[3]) + " coins");
+        $("#coin-gen-5-cost").html("Cost: " + round(coinGenPrice[4]) + " coins");
+        $("#coffee-cost").html("Cost: " + round(coinBuffPrice[0]) + " coins");
+        $("#pickaxes-cost").html("Cost: " + round(coinBuffPrice[1]) + " coins");
+        $("#coin-gen-1-prod").html(" " + round(coinGenAmount[0] * coinGenEff[0] * global_multi) + " c/s (" + round(coinGenEff[0] * global_multi) + " c/s per slave)");
+        $("#coin-gen-2-prod").html(" " + round(coinGenAmount[1] * coinGenEff[1] * global_multi) + " c/s (" + round(coinGenEff[1] * global_multi) + " c/s per staff)");
+        $("#coin-gen-3-prod").html(" " + round(coinGenAmount[2] * coinGenEff[2] * global_multi) + " c/s (" + round(coinGenEff[2] * global_multi) + " c/s per watcher)");
+        $("#coin-gen-4-prod").html(" " + round(coinGenAmount[3] * coinGenEff[3] * global_multi) + " c/s (" + round(coinGenEff[3] * global_multi) + " c/s per manager)");
+        $("#coin-gen-5-prod").html(" " + round(coinGenAmount[4] * coinGenEff[4] * global_multi) + " c/s (" + round(coinGenEff[4] * global_multi) + " c/s per overseer)");
+        $("#coffee-eff").html(" " + round(coffee_mult * 100) + "% Production, +10% per coffee machine");
+        $("#pickaxes-eff").html(" " + pick_mult + "x Production, Pickaxe Power: 2x");
         if(coins < coinGenPrice[0])
             disableBtn("coin-gen-1");
         else
@@ -143,5 +150,13 @@ $(document).ready(function(){
     }
     function enableBtn(btn) {
         document.getElementById(btn).disabled = false;
+    }
+    function round(num){
+        if(num <= 1e6){
+            return Math.round(num);
+        }
+        else{
+            return num.toExponential(2);
+        }
     }
 });
