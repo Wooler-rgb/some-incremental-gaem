@@ -87,6 +87,7 @@ $(document).ready(function(){
     $("#cheat-2").click(function(){
         coins += 1e9;
     })
+    
     function getProduction(){
         return (coinGenAmount[0] * coinGenEff[0] + (coinGenAmount[1] * coinGenEff[1]) + (coinGenAmount[2] * coinGenEff[2]) + (coinGenAmount[3] * coinGenEff[3]) + (coinGenAmount[4] * coinGenEff[4])) * global_multi;
     }
