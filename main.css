@@ -30,10 +30,7 @@ button{
     border-width:2px;
     border-radius:0px;
     border-color:brown;
-<<<<<<< Updated upstream
-=======
 }
 .cheats{
-    display:block;
->>>>>>> Stashed changes
+    display:none;
 }
