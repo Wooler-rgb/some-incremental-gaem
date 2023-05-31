@@ -84,51 +84,6 @@ $(document).ready(function(){
     $("#gens").click(function(){
         menu = switchMenu("coin-gen");
     })
-<<<<<<< Updated upstream
-=======
-    $("#cheat-1").click(function(){
-        coins += 1e6;
-    })
-    $("#cheat-2").click(function(){
-        coins += 1e9;
-    })
-    $("#coin-upg-1").click(function(){
-        $("#coin-upg-1").css("background-color", "purple");
-        coins -= coinUpgPrice[0];
-        coinUpg[0] = 1;
-        coinProduction = getProduction();
-        changeStats();
-    })
-    $("#coin-upg-2").click(function(){
-        $("#coin-upg-2").css("background-color", "purple");
-        coins -= coinUpgPrice[1];
-        coinUpg[1] = 1;
-        coinProduction = getProduction();
-        changeStats();
-    })
-    $("#coin-upg-3").click(function(){
-        $("#coin-upg-3").css("background-color", "purple");
-        coins -= coinUpgPrice[2];
-        coinUpg[2] = 1;
-        coinProduction = getProduction();
-        changeStats();
-    })
-    $("#coin-upg-4").click(function(){
-        $("#coin-upg-4").css("background-color", "purple");
-        coins -= coinUpgPrice[3];
-        coinUpg[3] = 1;
-        global_multi *= 2;
-        coinProduction = getProduction();
-        changeStats();
-    })
-    $("#coin-upg-5").click(function(){
-        $("#coin-upg-5").css("background-color", "purple");
-        coins -= coinUpgPrice[4];
-        coinUpg[4] = 1;
-        coinProduction = getProduction();
-        changeStats();
-    })
->>>>>>> Stashed changes
     function getProduction(){
         return (coinGenAmount[0] * coinGenEff[0] + (coinGenAmount[1] * coinGenEff[1]) + (coinGenAmount[2] * coinGenEff[2]) + (coinGenAmount[3] * coinGenEff[3]) + (coinGenAmount[4] * coinGenEff[4])) * global_multi;
     }
