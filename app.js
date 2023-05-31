@@ -81,12 +81,18 @@ $(document).ready(function(){
     $("#gens").click(function(){
         menu = switchMenu("coin-gen");
     })
+    $("#cheat-1").click(function(){
+        coins += 1e6;
+    })
+    $("#cheat-2").click(function(){
+        coins += 1e9;
+    })
     function getProduction(){
         return (coinGenAmount[0] * coinGenEff[0] + (coinGenAmount[1] * coinGenEff[1]) + (coinGenAmount[2] * coinGenEff[2]) + (coinGenAmount[3] * coinGenEff[3]) + (coinGenAmount[4] * coinGenEff[4])) * global_multi;
     }
     function changeStats(){
-        $("#coins").html(~~coins + "&nbsp&nbsp&nbsp&nbsp");
-        $("#c-per-s").html(~~coinProduction + " c/s");
+        $("#coins").html(round(coins) + "&nbsp&nbsp&nbsp&nbsp");
+        $("#c-per-s").html(round(coinProduction) + " c/s");
         $("#coin-gen-1-num").html("Slaves: " + coinGenAmount[0] + " ");
         $("#coin-gen-2-num").html("Staff: " + coinGenAmount[1] + " ");
         $("#coin-gen-3-num").html("Watchers: " + coinGenAmount[2] + " ");
