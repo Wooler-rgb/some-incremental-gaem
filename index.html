@@ -9,38 +9,59 @@
 	<body style="background-color: black;">
 		<div class="content">
 			<div class="stats">
-				<img src="img/coin.png" alt="coin" width="50px" height="50px">
-				<text id="coins"> 0 </text><text id="c-per-s" style="font-size: 70%; color:brown;">1 c/s</text>
+				<span class="coin-stat">
+					<img src="img/coin.png" alt="coin" width="50px" height="50px">
+					<text id="coins"> 0 </text><text id="c-per-s" style="font-size: 70%; color:brown;">1 c/s</text>
+					<text>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</text>
+				</span>
+				<span class="gold-ore-stat" id="ore">
+					<img src="img/gold_ore.png" alt="ore" width="50px" height="50px">
+					<text id="gold-ore"> 0 </text>
+					<text>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</text>
+				</span>
+				<span class="ingot-stat" id="ingots">
+					<img src="img/ingot.png" alt="ingot" width="50px" height="50px">
+					<text id="ingot"> 0 </text>
+					<text>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</text>
+				</span>
 			</div>
 			<div class="menus">
 				<div class="main">
 					<button id="gens">Generators</button>
 					<button id="upg">Upgrades</button>
+					<button id="prs" style="border-color:gold; color:rgb(248, 248, 178)">Prestige</button>
+					<button class="furnace-tab" id="furnace-menu" style="border-color:gray; color:gray;">Furnance</button>
+					<button class="golden-upgs" id="gold-upg" style="border-color:rgb(255, 217, 0); color:rgb(255, 228, 74);">GOLDEN Upgrades</button>
 				</div>
 				
 				<div class="coin-gen">
 					<img src="img/coin.png" alt="coin" width="30px" height="30px">
 					<text id="coin-gen-1-num">Slaves: 1  </text><button id="coin-gen-1" ><text id="coin-gen-1-cost">Cost: 10 coins</text></button>
 					<text id="coin-gen-1-prod"> 1 c/s</text><br>
+
 					<img src="img/coin.png" alt="coin" width="30px" height="30px">
 					<text id="coin-gen-2-num">Staff: 0  </text><button id="coin-gen-2"><text id="coin-gen-2-cost">Cost: 100 coins</text></button>
 					<text id="coin-gen-2-prod"> 0 c/s</text><br>
+
 					<img src="img/coin.png" alt="coin" width="30px" height="30px">
 					<text id="coin-gen-3-num">Watchers: 0  </text><button id="coin-gen-3"><text id="coin-gen-3-cost">Cost: 1500 coins</text></button>
 					<text id="coin-gen-3-prod"> 0 c/s</text><br>
+
 					<img src="img/coin.png" alt="coin" width="30px" height="30px">
 					<text id="coin-gen-4-num">Managers: 0  </text><button id="coin-gen-4"><text id="coin-gen-4-cost">Cost: 12500 coins</text></button>
 					<text id="coin-gen-4-prod"> 0 c/s</text><br>
+
 					<img src="img/coin.png" alt="coin" width="30px" height="30px">
 					<text id="coin-gen-5-num">Overseers: 0  </text><button id="coin-gen-5"><text id="coin-gen-5-cost">Cost: 100000 coins</text></button>
-					<text id="coin-gen-5-prod"> 0 c/s</text><br>
+					<text id="coin-gen-5-prod"> 0 c/s</text><br><br><br>
+
 					<img src="img/coin.png" alt="coin" width="30px" height="30px">
 					<text id="coffee-num">Coffee Machines: 0  </text><button id="coffee"><text id="coffee-cost">Cost: 1000 coins</text></button>
 					<text id="coffee-eff"> 100% Production, +10% per coffee machine</text><br>
+
 					<img src="img/coin.png" alt="coin" width="30px" height="30px">
 					<text id="pickaxes-num">Pickaxes: 0  </text><button id="pickaxes"><text id="pickaxes-cost">Cost: 10000 coins</text></button>
 					<text id="pickaxes-eff"> 1x Production, Pickaxe Power: 2x</text><br>
-					Win at 1e12 coins!
 				</div>
 				<div class="upgrades">
 					<button id="coin-upg-1"><img src="img/coin.png" alt="coin" width="40px" height="40px"></button><text id="coin-upg-1-desc">Cost: 1e+7. Slaves produce more coins based on coins. Currently: 1x</text><br>
@@ -48,11 +69,69 @@
 					<button id="coin-upg-3"><img src="img/coin.png" alt="coin" width="40px" height="40px"></button><text id="coin-upg-3-desc">Cost: 1e+9. Watchers produce more coins based on every producer. Currently: 1x</text><br>
 					<button id="coin-upg-4"><img src="img/coin.png" alt="coin" width="40px" height="40px"></button><text id="coin-upg-4-desc">Cost: 1e+10. Managers produce 200x coins. 2x coins/s as well! Currently: 1x</text><br>
 					<button id="coin-upg-5"><img src="img/coin.png" alt="coin" width="40px" height="40px"></button><text id="coin-upg-5-desc">Cost: 1e+11. Overseers boost coin gain. Currently: 1x</text><br>
-				</div>
 					<div class="cheats">
 						<button id="cheat-1"><text>gain 1e6 coins</text></button><br>
 						<button id="cheat-2"><text>gain 1e9 coins</text></button><br>
+						<button id="cheat-3"><text>gain 1e12 coins</text></button><br>
+						<button id="cheat-4"><text>gain 1 gold ore</text></button><br>
+						<button id="cheat-5"><text>gain 1000 gold ore</text></button><br>
 					</div>
+				</div>
+				<div class="prestige" style="text-align:center;">
+					<text class="prestige-text-1" id="prestige-off-text" style="font-size:200%;">You need 1e12 coins to prestige!</text>
+					<text class="prestige-text-2" id="prestige-on-text" style="font-size:150%; display:none;">Prestige and get 10 Gold ore!</text>
+					<br><br>
+					<div class="button" style="text-align:center;" id="worst-button">
+						<button id="prestige-btn">Prestige</button><br>
+					</div>
+				</div>
+				<div class="furnace">
+					<text id="furnace-num" class="furnace-num">Your furnace is 1x effective</text><br>
+					<text class="furnace-eff" id="furnace-eff">Conversion efficiency is 10%</text><br><br>
+					<button id="furnace-active">OFF</button><br><br>
+					<text id="furnace-boost" style="font-size:150%;">While furnace is working, you get 5x coins</text><br>
+					<text id="ingot-boost-eff" class="ingot-boost" style="font-size:150%; color:gold;">Your ingots boost coin upgrades 1-5 by 0%!</text><br><br>
+					<div class="furnace-upgs">
+						<img src="img/ingot.png" alt="coin" width="30px" height="30px">
+						<text id="furnace-upg-1-amount">Efficient smelters: 0 </text><button id="furnace-upg-1"><text id="furnace-upg-1-cost">Cost: 1 ingots</text></button>
+						<text id="furnace-upg-1-desc"> +1% conversion rate.</text><br>
+
+						<img src="img/ingot.png" alt="coin" width="30px" height="30px">
+						<text id="furnace-upg-2-amount">Hotter furnaces: 0 </text><button id="furnace-upg-2"><text id="furnace-upg-2-cost">Cost: 10 ingots</text></button>
+						<text id="furnace-upg-2-desc"> +1x furnace boost.</text><br>
+
+						<img src="img/ingot.png" alt="coin" width="30px" height="30px">
+						<text id="furnace-upg-3-amount">Bigger space: 0 </text><button id="furnace-upg-3"><text id="furnace-upg-3-cost">Cost: 20 ingots</text></button>
+						<text id="furnace-upg-3-desc"> Furnace burns twice as fast.</text><br>
+
+						<img src="img/ingot.png" alt="coin" width="30px" height="30px">
+						<text id="furnace-upg-4-amount">Polished coffee: 0 </text><button id="furnace-upg-4"><text id="furnace-upg-4-cost">Cost: 5 ingots</text></button>
+						<text id="furnace-upg-4-desc"> 1 free coffee machine, +0.1% coffee machine efficiency.</text><br>
+					</div>
+					
+					
+				</div>
+				<div class="gold-upgrades">
+					<text style="font-size:200%;">Headstart</text><br>
+					<button id="headstart-upg-1"><img src="img/ingot.png" alt="coin" width="40px" height="40px"></button><text id="headstart-upg-1-desc">Cost: 10 Gold ore. Start prestiges with 10000 coins.</text><br>
+					<button id="headstart-upg-2"><img src="img/ingot.png" alt="coin" width="40px" height="40px"></button><text id="headstart-upg-2-desc">Cost: 666 Gold ore. Start with 1 free overseer.</text><br>
+					<button id="headstart-upg-3"><img src="img/ingot.png" alt="coin" width="40px" height="40px"></button><text id="headstart-upg-3-desc">Cost: 5000 Gold ore. Start with first coin upgrade, a free pickaxe and coffee machine.</text><br><br><br>
+					
+					<text style="font-size:200%;">Lategame</text><br>
+					<button id="lategame-upg-1"><img src="img/ingot.png" alt="coin" width="40px" height="40px"></button><text id="lategame-upg-1-desc">Cost: 200 Gold ore. Superscaling exponent 1.02 -> 1.01</text><br>
+					<button id="lategame-upg-2"><img src="img/ingot.png" alt="coin" width="40px" height="40px"></button><text id="lategame-upg-2-desc">Cost: 6666 Gold ore. Delay superscaling by 20%</text><br>
+					<button id="lategame-upg-3"><img src="img/ingot.png" alt="coin" width="40px" height="40px"></button><text id="lategame-upg-3-desc">Cost: 10000 Gold ore. Nerf superscaling. 1.01 -> 1.008, improve gold ore gain formula.</text><br><br><br>
+
+					<text style="font-size:200%;">Special (TBA)</text><br>
+					<button id="special-upg-1.1"><img src="img/ingot.png" alt="coin" width="40px" height="40px"></button><text id="special-upg-1.1-desc">Desc1</text><br>
+					OR<br>
+					<button id="special-upg-1.2"><img src="img/ingot.png" alt="coin" width="40px" height="40px"></button><text id="special-upg-1.2-desc">Desc2</text><br><br>
+					<button id="special-upg-2.1"><img src="img/ingot.png" alt="coin" width="40px" height="40px"></button><text id="special-upg-2.1-desc">Desc3</text><br>
+					OR<br>
+					<button id="special-upg-2.2"><img src="img/ingot.png" alt="coin" width="40px" height="40px"></button><text id="special-upg-2.2-desc">Desc4</text><br><br>
+					<button id="special-upg-3.1"><img src="img/ingot.png" alt="coin" width="40px" height="40px"></button><text id="special-upg-3.1-desc">Desc5</text><br>
+					OR<br>
+					<button id="special-upg-3.2"><img src="img/ingot.png" alt="coin" width="40px" height="40px"></button><text id="special-upg-3.2-desc">Desc6</text><br><br><br>
 				</div>
 			</div>
 		</div>
