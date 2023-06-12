@@ -19,7 +19,14 @@ $(document).ready(function(){
     var coinBuffAmountFree = [0, 0];
     var coinBuffEff = [1.1, 2];
     var coinUpgPrice = [1e7, 1e8, 1e9, 1e10, 1e11];
-    var GoldUpgPrice = [10, 350, 1666, 200, 999, 2000];
+    var mainUpgPrice = [0, 100, 1000, 15000, 1e6];
+    var headUpgPrice = [10, 150, 2500, 100000];
+    var lateUpgPrice = [200, 1500, 10000, 200000];
+    var specUpgPrice = [10, 250, 1000];
+    var mainUpg = [0, 0, 0, 0, 0];
+    var headUpg = [0, 0, 0, 0];
+    var lateUpg = [0, 0, 0, 0];
+    var specUpg = [0, 0, 0, 0, 0, 0];
     var coinUpg = [0, 0, 0, 0, 0];
     var GoldUpg = [0, 0, 0, 0, 0, 0];
     var furnaceUpgAmount = [0, 0, 0, 0];
@@ -38,6 +45,10 @@ $(document).ready(function(){
     var ingotUpgBoost = 1;
     var ore_gain = 0;
     var furnaceSpeed = 1;
+    var ingotCoin = 0;
+    var upgBonus = 1;
+    var goldUpgBonus = 1;
+    var conv_multi = 1;
     setInterval(function(){
         GetCoinGenEff();
         coinProduction = getProduction();
@@ -157,6 +168,9 @@ $(document).ready(function(){
     $("#cheat-5").click(function(){
         gold_ore += 1000;
     })
+    $("#cheat-6").click(function(){
+        Prestige();
+    })
     $("#coin-upg-1").click(function(){
         $("#coin-upg-1").css("background-color", "green");
         coins -= coinUpgPrice[0];
@@ -195,7 +209,7 @@ $(document).ready(function(){
     $("#furnace-upg-1").click(function(){
         ingot -= furnaceUpgPrice[0];
         furnaceUpgAmount[0] += 1;
-        conv_eff += 0.01;
+        conv_eff += 0.01 * conv_multi;
         furnaceUpgPrice[0] *= 1.5;
         coinProduction = getProduction();
         changeStats();
@@ -225,26 +239,57 @@ $(document).ready(function(){
         coinProduction = getProduction();
         changeStats();
     }) 
+    $("#main-upg-1").click(function(){
+        $("#main-upg-1").css("background-color", "green");
+        gold_ore -= mainUpgPrice[0];
+        mainUpg[0] += 1;
+        coinProduction = getProduction();
+        changeStats();
+    }) 
+    $("#main-upg-2").click(function(){
+        $("#main-upg-2").css("background-color", "green");
+        gold_ore -= mainUpgPrice[1];
+        mainUpg[1] += 1;
+        conv_multi += 0.1;
+        conv_eff *= 1.1;
+        coinProduction = getProduction();
+        changeStats();
+    }) 
+    $("#main-upg-4").click(function(){
+        $("#main-upg-4").css("background-color", "green");
+        gold_ore -= mainUpgPrice[3];
+        mainUpg[3] += 1;
+        coinProduction = getProduction();
+        changeStats();
+    }) 
+    $("#main-upg-5").click(function(){
+        $("#main-upg-5").css("background-color", "green");
+        gold_ore -= mainUpgPrice[4];
+        mainUpg[4] += 1;
+        alert("YOU WON! IF YOU ARE FIRST THEN CONGRATS! YOU CAN SLEEP NOW");
+        coinProduction = getProduction();
+        changeStats();
+    }) 
     $("#headstart-upg-1").click(function(){
         $("#headstart-upg-1").css("background-color", "green");
-        gold_ore -= GoldUpgPrice[0];
-        GoldUpg[0] += 1;
+        gold_ore -= headUpgPrice[0];
+        headUpg[0] += 1;
         coins += 10000;
         coinProduction = getProduction();
         changeStats();
     }) 
     $("#headstart-upg-2").click(function(){
         $("#headstart-upg-2").css("background-color", "green");
-        gold_ore -= GoldUpgPrice[1];
-        GoldUpg[1] += 1;
+        gold_ore -= headUpgPrice[1];
+        headUpg[1] += 1;
         coinGenAmountFree[4] += 1;
         coinProduction = getProduction();
         changeStats();
     }) 
     $("#headstart-upg-3").click(function(){
         $("#headstart-upg-3").css("background-color", "green");
-        gold_ore -= GoldUpgPrice[2];
-        GoldUpg[2] += 1;
+        gold_ore -= headUpgPrice[2];
+        headUpg[2] += 1;
         coinBuffAmountFree[0] += 1;
         coinBuffAmountFree[1] += 1;
         coinUpg[0] = 1;
@@ -252,18 +297,29 @@ $(document).ready(function(){
         coinProduction = getProduction();
         changeStats();
     }) 
+    $("#headstart-upg-4").click(function(){
+        $("#headstart-upg-4").css("background-color", "green");
+        gold_ore -= headUpgPrice[3];
+        headUpg[3] += 1;
+        coinUpg[1] = 1;
+        coinUpg[2] = 1;
+        $("#coin-upg-2").css("background-color", "green");
+        $("#coin-upg-3").css("background-color", "green");
+        coinProduction = getProduction();
+        changeStats();
+    }) 
     $("#lategame-upg-1").click(function(){
         $("#lategame-upg-1").css("background-color", "green");
-        gold_ore -= GoldUpgPrice[3];
-        GoldUpg[3] += 1;
+        gold_ore -= lateUpgPrice[0];
+        lateUpg[0] += 1;
         epxoGrowth = 1.01;
         coinProduction = getProduction();
         changeStats();
     }) 
     $("#lategame-upg-2").click(function(){
         $("#lategame-upg-2").css("background-color", "green");
-        gold_ore -= GoldUpgPrice[4];
-        GoldUpg[4] += 1;
+        gold_ore -= lateUpgPrice[1];
+        lateUpg[1] += 1;
         coinGenSoft[0] *= 1.2;
         coinGenSoft[1] *= 1.2;
         coinGenSoft[2] *= 1.2;
@@ -276,12 +332,19 @@ $(document).ready(function(){
     }) 
     $("#lategame-upg-3").click(function(){
         $("#lategame-upg-3").css("background-color", "green");
-        gold_ore -= GoldUpgPrice[5];
-        GoldUpg[5] += 1;
+        gold_ore -= lateUpgPrice[2];
+        lateUpg[2] += 1;
         epxoGrowth = 1.008;
         coinProduction = getProduction();
         changeStats();
     }) 
+    $("#lategame-upg-4").click(function(){
+        $("#lategame-upg-4").css("background-color", "green");
+        gold_ore -= lateUpgPrice[3];
+        lateUpg[3] += 1;
+        coinProduction = getProduction();
+        changeStats();
+    })
     $("#prestige-btn").click(function(){
         Prestige();
     })
@@ -289,7 +352,7 @@ $(document).ready(function(){
         isFurnaceActive = FurnaceSwitch(isFurnaceActive);
     })
     function getProduction(){
-        return ((coinGenAmount[0] + coinGenAmountFree[0]) * coinGenEff[0] + ((coinGenAmount[1] + coinGenAmountFree[1]) * coinGenEff[1]) + ((coinGenAmount[2] + coinGenAmountFree[2]) * coinGenEff[2]) + ((coinGenAmount[3] + coinGenAmountFree[3]) * coinGenEff[3]) + ((coinGenAmount[4] + coinGenAmountFree[4]) * coinGenEff[4])) * global_multi;
+        return (ingotCoin + (coinGenAmount[0] + coinGenAmountFree[0]) * coinGenEff[0] + ((coinGenAmount[1] + coinGenAmountFree[1]) * coinGenEff[1]) + ((coinGenAmount[2] + coinGenAmountFree[2]) * coinGenEff[2]) + ((coinGenAmount[3] + coinGenAmountFree[3]) * coinGenEff[3]) + ((coinGenAmount[4] + coinGenAmountFree[4]) * coinGenEff[4])) * global_multi;
     }
     function changeStats(){
         $("#coins").html(round(coins) + "&nbsp&nbsp&nbsp&nbsp");
@@ -382,32 +445,59 @@ $(document).ready(function(){
             disableBtn("coin-upg-5");
         else
             enableBtn("coin-upg-5");
-        if(gold_ore < GoldUpgPrice[0] || GoldUpg[0] == 1)
+        if(gold_ore < headUpgPrice[0] || headUpg[0] == 1)
             disableBtn("headstart-upg-1");
         else
             enableBtn("headstart-upg-1");
             
-        if(gold_ore < GoldUpgPrice[1] || GoldUpg[1] == 1)
+        if(gold_ore < headUpgPrice[1] || headUpg[1] == 1)
             disableBtn("headstart-upg-2");
         else
             enableBtn("headstart-upg-2");
-        if(gold_ore < GoldUpgPrice[2] || GoldUpg[2] == 1)
+        if(gold_ore < headUpgPrice[2] || headUpg[2] == 1)
             disableBtn("headstart-upg-3");
         else
             enableBtn("headstart-upg-3");
-        if(gold_ore < GoldUpgPrice[3] || GoldUpg[3] == 1)
+        if(gold_ore < headUpgPrice[3] || headUpg[3] == 1)
+            disableBtn("headstart-upg-4");
+        else
+            enableBtn("headstart-upg-4");
+        if(gold_ore < lateUpgPrice[0] || lateUpg[0] == 1)
             disableBtn("lategame-upg-1");
         else
             enableBtn("lategame-upg-1");
-            
-        if(gold_ore < GoldUpgPrice[4] || GoldUpg[4] == 1)
+        if(gold_ore < lateUpgPrice[1] || lateUpg[1] == 1)
             disableBtn("lategame-upg-2");
         else
             enableBtn("lategame-upg-2");
-        if(gold_ore < GoldUpgPrice[5] || GoldUpg[5] == 1)
+        if(gold_ore < lateUpgPrice[2] || lateUpg[2] == 1)
             disableBtn("lategame-upg-3");
         else
             enableBtn("lategame-upg-3");
+        if(gold_ore < lateUpgPrice[3] || lateUpg[3] == 1)
+            disableBtn("lategame-upg-4");
+        else
+            enableBtn("lategame-upg-4");
+        if(gold_ore < mainUpgPrice[0] || mainUpg[0] == 1)
+            disableBtn("main-upg-1");
+        else
+            enableBtn("main-upg-1");
+        if(gold_ore < mainUpgPrice[1] || mainUpg[1] == 1)
+            disableBtn("main-upg-2");
+        else
+            enableBtn("main-upg-2");
+        if(gold_ore < mainUpgPrice[2] || mainUpg[2] == 1)
+            disableBtn("main-upg-3");
+        else
+            enableBtn("main-upg-3");
+        if(gold_ore < mainUpgPrice[3] || mainUpg[3] == 1)
+            disableBtn("main-upg-4");
+        else
+            enableBtn("main-upg-4");
+        if(gold_ore < mainUpgPrice[4] || mainUpg[4] == 1)
+            disableBtn("main-upg-5");
+        else
+            enableBtn("main-upg-5");
         if(ingot < furnaceUpgPrice[0])
             disableBtn("furnace-upg-1");
         else
@@ -469,8 +559,12 @@ $(document).ready(function(){
         return Math.log(num) / Math.log(x);
     }
     function GetCoinGenEff(){
-        ingotUpgBoost = 1 + (logx(2, ingot + 1) / 100);
-        furnaceBonus = (isFurnaceActive * (furnaceBonusEff - 1)) + 1
+        let ingotEffBonus = 1 + 0.25 * mainUpg[1];
+        ingotUpgBoost = 1 + (logx(2, ingot + 1) / 100) * ingotEffBonus;
+        furnaceBonus = (isFurnaceActive * (furnaceBonusEff - 1)) + 1;
+        upgBonus = 1 + Math.pow(2, coinUpg[0] + coinUpg[1] + coinUpg[2] + coinUpg[3] + coinUpg[4]) * lateUpg[3];
+        goldUpgBonus = 1 + (mainUpg[0] + mainUpg[1] + mainUpg[2] + mainUpg[3] + mainUpg[4]) * 3 * mainUpg[0];
+        ingotCoin = ingot * 10 * headUpg[1];
         coinUpgMult[0] = 1 + (logx(1.4, coins + 1) * ingotUpgBoost * coinUpg[0]);
         coinUpgMult[1] = 1 + (coinGenAmount[1] * ingotUpgBoost / 2.5 * coinUpg[1]);
         coinUpgMult[2] = 1 + ((coinGenAmount[0] + coinGenAmount[1] +  + coinGenAmount[2] + coinGenAmount[3] + coinGenAmount[4] + 1) * ingotUpgBoost / 3 * coinUpg[2]);
@@ -481,9 +575,12 @@ $(document).ready(function(){
         coinGenEff[1] = coinUpgMult[1] * 10;
         coinGenEff[2] = coinUpgMult[2] * 100;
         coinGenEff[3] = coinUpgMult[3] * 500;
+        coinGenAmountFree[4] = headUpg[1];
+        coinBuffAmountFree[0] = headUpg[2] + round(coinBuffAmount[1] / 3 * mainUpg[3]);
+        coinBuffAmountFree[1] = headUpg[2];
         coffee_mult = Math.pow(coinBuffEff[0], coinBuffAmount[0] + coinBuffAmountFree[0]);
         pick_mult = Math.pow(coinBuffEff[1], coinBuffAmount[1] + coinBuffAmountFree[1]);
-        global_multi = coffee_mult * pick_mult * coinUpgMult[4] * (1 + 1 * coinUpg[3]) * furnaceBonus;
+        global_multi = coffee_mult * pick_mult * coinUpgMult[4] * (1 + 1 * coinUpg[3]) * furnaceBonus * upgBonus * goldUpgBonus;
     }
     function Prestige(){
         if(didPrestige == false){
@@ -494,7 +591,10 @@ $(document).ready(function(){
             didPrestige = true;
         }
         gold_ore = gold_ore + ore_gain;
-        if(coinUpg[0]){
+        if(headUpg[3]){
+            coins = 1e9;
+        }
+        else if(headUpg[0]){
             coins = 10000;
         }
         else{
@@ -515,14 +615,24 @@ $(document).ready(function(){
         coinBuffAmountFree[0] = GoldUpg[2] + furnaceUpgAmount[3];
         coinBuffAmountFree[1] = GoldUpg[2];
         coinUpgPrice = [1e7, 1e8, 1e9, 1e10, 1e11];
-        coinUpg = [0, 0, 0, 0, 0];
-        coinUpg[0] = GoldUpg[2];
+        coinUpg = [headUpg[2], headUpg[3], headUpg[3], 0, 0];
+        
         coinGenExpo = [1.2, 1.25, 1.3, 1.4, 1.5];
         coinBuffExpo = [2.5, 10];
-
-        $("#coin-upg-1").css("background-color", "black");
-        $("#coin-upg-2").css("background-color", "black");
-        $("#coin-upg-3").css("background-color", "black");
+        if(headUpg[2]){
+            $("#coin-upg-1").css("background-color", "green");
+        }
+        else{
+            $("#coin-upg-1").css("background-color", "black");
+        }
+        if(headUpg[3]){
+            $("#coin-upg-2").css("background-color", "green");
+            $("#coin-upg-3").css("background-color", "green");
+        }
+        else{
+            $("#coin-upg-2").css("background-color", "black");
+            $("#coin-upg-3").css("background-color", "black");
+        }
         $("#coin-upg-4").css("background-color", "black");
         $("#coin-upg-5").css("background-color", "black");
     }
