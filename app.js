@@ -19,9 +19,9 @@ $(document).ready(function(){
     var coinBuffAmountFree = [0, 0];
     var coinBuffEff = [1.1, 2];
     var coinUpgPrice = [1e7, 1e8, 1e9, 1e10, 1e11];
-    var GoldUpgPrice = [10, 666, 5000, 200, 6666, 10000];
+    var GoldUpgPrice = [10, 350, 1666, 200, 999, 2000];
     var coinUpg = [0, 0, 0, 0, 0];
-    var GoldUpg = [0, 0, 0, 0, 0];
+    var GoldUpg = [0, 0, 0, 0, 0, 0];
     var furnaceUpgAmount = [0, 0, 0, 0];
     var furnaceUpgPrice = [1, 10, 20, 5];
     var coinUpgMult = [1, 1, 1, 15, 1];
@@ -314,9 +314,9 @@ $(document).ready(function(){
         $("#furnace-upg-2-cost").html("Cost: " + round(furnaceUpgPrice[1]) + " ingots");
         $("#furnace-upg-3-cost").html("Cost: " + round(furnaceUpgPrice[2]) + " ingots");
         $("#furnace-upg-4-cost").html("Cost: " + round(furnaceUpgPrice[3]) + " ingots");
-        $("#furnace-upg-1-amount").html("Polished coffee: " + round(furnaceUpgAmount[0]));
-        $("#furnace-upg-2-amount").html("Polished coffee: " + round(furnaceUpgAmount[1]));
-        $("#furnace-upg-3-amount").html("Polished coffee: " + round(furnaceUpgAmount[2]));
+        $("#furnace-upg-1-amount").html("Efficient smelter: " + round(furnaceUpgAmount[0]));
+        $("#furnace-upg-2-amount").html("Hotter fuel: " + round(furnaceUpgAmount[1]));
+        $("#furnace-upg-3-amount").html("Faster furnace: " + round(furnaceUpgAmount[2]));
         $("#furnace-upg-4-amount").html("Polished coffee: " + round(furnaceUpgAmount[3]));
         $("#coin-gen-1-prod").html(" " + round((coinGenAmount[0] + coinGenAmountFree[0]) * coinGenEff[0] * global_multi) + " c/s (" + round(coinGenEff[0] * global_multi) + " c/s per slave)");
         $("#coin-gen-2-prod").html(" " + round((coinGenAmount[1] + coinGenAmountFree[1]) * coinGenEff[1] * global_multi) + " c/s (" + round(coinGenEff[1] * global_multi) + " c/s per staff)");
