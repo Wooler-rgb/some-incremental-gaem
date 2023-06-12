@@ -53,8 +53,8 @@ $(document).ready(function(){
         GetCoinGenEff();
         coinProduction = getProduction();
         coins += coinProduction / tickdiv;
-        if(GoldUpg[5]){
-            ore_gain = Math.pow(coins, 0.2);
+        if(lateUpg[2]){
+            ore_gain = Math.pow(coins, 0.25);
         }
         else{
             ore_gain = Math.pow(coins, 0.2) / 2.5;
